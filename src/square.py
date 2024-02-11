@@ -28,7 +28,7 @@ class TurtleBot:
         # Publisher which will publish to the topic '/cmd_vel'.
         self.velocity_publisher = rospy.Publisher('/cmd_vel', Twist, queue_size=3)
 
-        self.rate = rospy.Rate(50)
+        self.rate = rospy.Rate(100)
         
     def traverseSquare(self):
         """Move in a square."""
@@ -67,7 +67,7 @@ class TurtleBot:
             vel_msg.angular.z = 0
 
             self.velocity_publisher.publish(vel_msg)
-            self.rate.sleep()
+            time.sleep(0.5)
 
             t_start = rospy.get_time()
 
@@ -91,6 +91,7 @@ class TurtleBot:
         vel_msg.angular.x = 0
         vel_msg.angular.y = 0
         vel_msg.angular.z = 0
+        time.sleep(0.5)
         self.velocity_publisher.publish(vel_msg)
 
         # If we press control + C, the node will stop.
