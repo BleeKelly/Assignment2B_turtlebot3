@@ -8,7 +8,7 @@ from geometry_msgs.msg import Twist
 from std_srvs.srv import Empty
 
 import time
-
+time.sleep(15)#In order to allow Gazebo to open fully
 # Remaps (-pi/2, pi/2) to (0, 2pi)
 def remapAngle(angle):
     return round((angle + (2*pi)) % (2*pi), 4)
@@ -67,7 +67,7 @@ class TurtleBot:
             vel_msg.angular.z = 0
 
             self.velocity_publisher.publish(vel_msg)
-            time.sleep(0.5)
+            time.sleep(1.5)
 
             t_start = rospy.get_time()
 
@@ -91,9 +91,8 @@ class TurtleBot:
         vel_msg.angular.x = 0
         vel_msg.angular.y = 0
         vel_msg.angular.z = 0
-        time.sleep(0.5)
         self.velocity_publisher.publish(vel_msg)
-
+        time.sleep(1.5)
         # If we press control + C, the node will stop.
         # rospy.spin()
 

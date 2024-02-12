@@ -6,14 +6,14 @@
     <include file="$(find turtlebot3_gazebo)/launch/turtlebot3_empty_world.launch" />    
     
     <group if="$(eval code == 'circle')">
-        <node pkg="assignment2b_turtlebot3" type="circle.py" name="circle">
+        <node pkg="gazebo_move" type="circle.py" name="circle">
             <param name="r" value="2"/>
             <param name="w" value="$(arg w)"/>        
         </node>
     </group>
 
     <group if="$(eval code == 'square')">
-        <node pkg="assignment2b_turtlebot3" type="square.py" name="square">
+        <node pkg="gazebo_move" type="square.py" name="square">
             <param name="v" value="$(arg v)"/>
             <param name="w" value="$(arg w)"/>        
         </node>

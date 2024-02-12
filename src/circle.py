@@ -8,7 +8,7 @@ from geometry_msgs.msg import Twist
 from std_srvs.srv import Empty
 
 import time
-
+time.sleep(5)#Ensures Gazebo is actually open before sending messages
 # Remaps (-pi/2, pi/2) to (0, 2pi)
 def remapAngle(angle):
     return round((angle + (2*pi)) % (2*pi), 4)
@@ -28,7 +28,7 @@ class TurtleBot:
         # Publisher which will publish to the topic '/cmd_vel'.
         self.velocity_publisher = rospy.Publisher('/cmd_vel', Twist, queue_size=3)
 
-        self.rate = rospy.Rate(100)        
+        self.rate = rospy.Rate(1000)        
 
     def traverseCircle(self):
         """Move in a circle."""
@@ -39,7 +39,7 @@ class TurtleBot:
 
         vel_msg = Twist()
         
-        rotPeriod = 2*2.0*pi/w # Time period to rotate
+        rotPeriod = 2.000001*pi/w # Time period to rotate. Using slightly larger than actual circle for while loop execution
 
         vel_msg.linear.x = 0
         vel_msg.linear.y = 0
@@ -85,7 +85,7 @@ class TurtleBot:
         self.velocity_publisher.publish(vel_msg)
 
         # If we press control + C, the node will stop.
-        rospy.spin()
+        #rospy.spin()
 
 if __name__ == '__main__':
     try:
